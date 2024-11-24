@@ -1,0 +1,36 @@
+<div class="h-100 position-relative">
+  <div class="d-none d-md-inline">
+    <span class="fs-4 p-3 rounded-circle position-absolute top-50 start-0 translate-middle-y" (click)="scrollToElement(-1)"><i class="botonCristal bi bi-chevron-left"></i></span>
+    <span class="fs-4 p-3 rounded-circle position-absolute top-50 end-0 translate-middle-y" (click)="scrollToElement(1)"><i class="botonCristal bi bi-chevron-right"></i></span>
+  </div>
+  <div class="h-100 w-100" style="overflow:auto">
+    <div class="h-100 d-flex flex-nowrap"  [style.width]="PresentacionesDatos.length+'00%'">
+      <div *ngFor="let presentacion of PresentacionesDatos" class="presentacion h-100 w-100 d-flex flex-wrap justify-content-center align-items-center" [style.background-image]="'url(' + presentacion.Imagen + ')'">
+        <div class="tarjetaCristal col-10 col-md-6 position-relative">
+          <b>Nombre Evento:</b>
+          <h1>{{presentacion.Nombre}}</h1>
+          <b>Descripcion:</b>
+          <div>{{presentacion.Descripcion}}</div>
+          <b>Ubicacion:</b>
+          <h3>{{presentacion.Ubicacion}}</h3>
+          <div class="position-absolute bottom-0 start-50 translate-middle d-flex justify-content-around w-100">
+            <div class="col-7">
+              <b>Fecha:</b>
+              <div>{{presentacion.Fecha| date:'EEEE'}}</div>
+              <div>{{presentacion.Fecha| date:'longDate'}}</div>
+              <div>{{presentacion.Fecha| date:'shortTime'}}</div>
+            </div>
+            <div class="col-3">
+              <b>Capacidad:</b>
+              <div>{{presentacion.Capacidad}}</div>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+  <div class="d-inline d-md-none position-absolute top-50 start-50 translate-middle" style="margin-top:250px">
+    <span class="fs-4 p-3 rounded-circle" (click)="scrollToElement(-1)"><i class="botonCristal bi bi-chevron-left"></i></span>
+    <span class="fs-4 p-3 rounded-circle" (click)="scrollToElement(1)"><i class="botonCristal bi bi-chevron-right"></i></span>
+  </div>
+</div>

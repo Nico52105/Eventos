@@ -1,0 +1,89 @@
+<div class="col-12 d-flex h-100" style="background-color: #e2dddd">
+  <!--Listado de eventos-->
+  <div [ngClass]="{'d-none d-md-flex': AccionActual!=null}" class="d-flex col-12 col-md-6 overflow-auto" style="background-color: #ffffff">
+    <table class="tablaEstilo">
+      <thead>
+        <tr style="position:sticky;top:0">
+          <th>Nombre</th>
+          <th>Fecha</th>
+          <th class="d-none d-md-flex">Ubicación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Evento of Eventos">
+          <td>{{Evento.Nombre}}</td>
+          <td>{{Evento.Fecha | date:'dd/MMM/yyyy'}}</td>
+          <td class="d-none d-md-table-cell">{{Evento.Ubicacion}}</td>
+          <td style="text-align:center">
+            <button type="button" class="btn btn-outline-primary btn-sm m-2" (click)="EditarEvento(Evento)"><i class="bi bi-pencil-fill px-1"></i>Editar</button>
+            <button type="button" class="btn btn-outline-danger btn-sm m-2" (click)="EliminarEvento(Evento)"><i class="bi bi-trash3-fill px-1"></i>Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr style="position:sticky;bottom:0">
+          <td colspan="5" style="text-align:center">
+            <button type="button" class="btn btn-primary btn-lg" (click)="NuevoEvento()"><i class="bi bi-plus-circle p-2"></i>Nuevo evento</button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!--Agergar ó modificar eventos-->
+  <div [ngClass]="{'d-none': AccionActual==null||AccionActual=='Eliminar'}" class="d-flex h-100 col-12 col-md-6 p-2">
+    <div class="presentacion h-100 w-100 d-flex flex-wrap justify-content-center align-items-center position-relative" [style.background-image]="'url(' + DatosEvento.Imagen.value + ')'">
+      <div class="position-absolute top-0 start-0 w-100">
+        <b>Url imagen de fondo:</b>
+        <input type="text" class="form-control" [formControl]="DatosEvento.Imagen">
+      </div>
+      <div class="tarjetaCristal col-10 col-md-6 position-relative">
+        <b>Nombre Evento:</b>
+        <input type="text" class="form-control" [formControl]="DatosEvento.Nombre">
+        <b>Descripcion:</b>
+        <input type="text" class="form-control" [formControl]="DatosEvento.Descripcion">
+        <b>Ubicacion:</b>
+        <input type="text" class="form-control" [formControl]="DatosEvento.Ubicacion">
+        <div class="position-absolute bottom-0 start-50 translate-middle d-flex justify-content-around w-100">
+          <div class="col-7">
+            <b>Fecha:</b>
+            <input type="date" class="form-control m-1" [formControl]="DatosEvento.Fecha">
+            <input type="time" class="form-control m-1" [formControl]="DatosEvento.Hora">
+          </div>
+          <div class="col-3">
+            <b>Capacidad:</b>
+            <input type="number" class="form-control" [formControl]="DatosEvento.Capacidad">
+          </div>
+        </div>
+      </div>
+      <button class="position-absolute bottom-0 end-0 btn btn-success m-3" [ngClass]="{'d-none': AccionActual != 'Editar'}" (click)="GuardarEvento()"><i class="bi bi-check-circle-fill m-2"></i>Guardar Cambios</button>
+      <button class="position-absolute bottom-0 end-0 btn btn-primary m-3" [ngClass]="{'d-none': AccionActual != 'Crear'}" (click)="CrearEvento()"><i class="bi bi-check-circle-fill m-2"></i>Crear Evento</button>
+    </div>
+  </div>
+  <!--Eliminar evento-->
+  <div [ngClass]="{'d-none': AccionActual==null||AccionActual=='Editar' ||AccionActual=='Crear'}" class="d-flex h-100 col-12 col-md-6">
+    <div *ngIf="EventoSeleccionado" class="presentacion h-100 w-100 d-flex flex-wrap justify-content-center align-items-center position-relative" [style.background-color]="EventoSeleccionado?.Color" [style.background-image]="'url(' + EventoSeleccionado?.Imagen + ')'">
+      <div class="tarjetaCristal col-10 col-md-6 position-relative">
+        <b>Nombre Evento:</b>
+        <h1>{{EventoSeleccionado?.Nombre}}</h1>
+        <b>Descripcion:</b>
+        <div>{{EventoSeleccionado?.Descripcion}}</div>
+        <b>Ubicacion:</b>
+        <h3>{{EventoSeleccionado?.Ubicacion}}</h3>
+        <div class="position-absolute bottom-0 start-50 translate-middle d-flex justify-content-around w-100">
+          <div class="col-7">
+            <b>Fecha:</b>
+            <div>{{EventoSeleccionado?.Fecha| date:'EEEE'}}</div>
+            <div>{{EventoSeleccionado?.Fecha| date:'longDate'}}</div>
+            <div>{{EventoSeleccionado?.Fecha| date:'shortTime'}}</div>
+          </div>
+          <div class="col-3">
+            <b>Capacidad:</b>
+            <div>{{EventoSeleccionado?.Capacidad}}</div>
+          </div>
+        </div>
+      </div>
+      <button class="position-absolute bottom-0 end-0 btn btn-danger m-3" (click)="ConfirmarEliminarEvento()"><i class="bi bi-check-circle-fill m-2"></i>Confirmar Eliminacion</button>
+    </div>
+  </div>
+</div>

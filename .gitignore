@@ -1,0 +1,44 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+AplicacionWeb/dist
+AplicacionWeb/tmp
+AplicacionWeb/out-tsc
+AplicacionWeb/bazel-out
+
+# Node
+AplicacionWeb/node_modules
+AplicacionWeb/npm-debug.log
+AplicacionWeb/yarn-error.log
+
+# IDEs and editors
+AplicacionWeb/.idea/
+AplicacionWeb/.project
+AplicacionWeb/.classpath
+AplicacionWeb/.c9/
+AplicacionWeb/*.launch
+AplicacionWeb/.settings/
+AplicacionWeb/*.sublime-workspace
+
+# Visual Studio Code
+AplicacionWeb/.vscode/*
+AplicacionWeb/!.vscode/settings.json
+AplicacionWeb/!.vscode/tasks.json
+AplicacionWeb/!.vscode/launch.json
+AplicacionWeb/!.vscode/extensions.json
+AplicacionWeb/.history/*
+
+# Miscellaneous
+AplicacionWeb/.angular/cache
+AplicacionWeb/.sass-cache/
+AplicacionWeb/connect.lock
+AplicacionWeb/coverage
+AplicacionWeb/libpeerconnection.log
+AplicacionWeb/testem.log
+AplicacionWeb/typings
+
+# System files
+AplicacionWeb/.DS_Store
+AplicacionWeb/Thumbs.db
+
+AplicacionWeb/.vs
