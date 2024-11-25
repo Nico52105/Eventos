@@ -42,3 +42,12 @@ AplicacionWeb/.DS_Store
 AplicacionWeb/Thumbs.db
 
 AplicacionWeb/.vs
+ApiEventos/API/.vs
+ApiEventos/API/bin/
+ApiEventos/API/obj/
+ApiEventos/Datos/bin/
+ApiEventos/Datos/obj/
+ApiEventos/Negocio/bin/
+ApiEventos/Negocio/obj/
+ApiEventos/Seguridad/bin/
+ApiEventos/Seguridad/obj/
