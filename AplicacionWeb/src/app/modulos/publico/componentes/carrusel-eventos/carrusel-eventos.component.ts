@@ -10,9 +10,11 @@ export class CarruselEventosComponent {
   PresentacionActual = 0;
   PresentacionesDatos:any[] = [];
   constructor(
-    datosService: DatosService
-  ) {
-    this.PresentacionesDatos=datosService.obtenerEventos();
+    private datosService: DatosService
+  ) {}
+
+  async ngOnInit() {
+    this.PresentacionesDatos = await this.datosService.obtenerEventos();
   }
   
   scrollToElement(direccion: number): void {  

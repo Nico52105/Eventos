@@ -18,7 +18,7 @@ namespace API.Controllers
         }
 
         [HttpGet("[Action]")]
-        public IActionResult ObtenerEventos()
+        public ActionResult<RespuestaGeneral<List<ContratoEvento>>> ObtenerEventos()
         {
             return Ok(this.procesosEventos.ObtenerEventos());
         }

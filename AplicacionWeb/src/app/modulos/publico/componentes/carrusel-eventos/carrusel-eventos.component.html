@@ -5,24 +5,24 @@
   </div>
   <div class="h-100 w-100" style="overflow:auto">
     <div class="h-100 d-flex flex-nowrap"  [style.width]="PresentacionesDatos.length+'00%'">
-      <div *ngFor="let presentacion of PresentacionesDatos" class="presentacion h-100 w-100 d-flex flex-wrap justify-content-center align-items-center" [style.background-image]="'url(' + presentacion.Imagen + ')'">
+      <div *ngFor="let presentacion of PresentacionesDatos" class="presentacion h-100 w-100 d-flex flex-wrap justify-content-center align-items-center" [style.background-image]="'url(' + presentacion.imagen + ')'">
         <div class="tarjetaCristal col-10 col-md-6 position-relative">
           <b>Nombre Evento:</b>
-          <h1>{{presentacion.Nombre}}</h1>
+          <h1>{{presentacion.nombre}}</h1>
           <b>Descripcion:</b>
-          <div>{{presentacion.Descripcion}}</div>
+          <div>{{presentacion.descripcion}}</div>
           <b>Ubicacion:</b>
-          <h3>{{presentacion.Ubicacion}}</h3>
+          <h3>{{presentacion.ubicacion}}</h3>
           <div class="position-absolute bottom-0 start-50 translate-middle d-flex justify-content-around w-100">
             <div class="col-7">
               <b>Fecha:</b>
-              <div>{{presentacion.Fecha| date:'EEEE'}}</div>
-              <div>{{presentacion.Fecha| date:'longDate'}}</div>
-              <div>{{presentacion.Fecha| date:'shortTime'}}</div>
+              <div>{{presentacion.fecha| date:'EEEE'}}</div>
+              <div>{{presentacion.fecha| date:'longDate'}}</div>
+              <div>{{presentacion.fecha| date:'shortTime'}}</div>
             </div>
             <div class="col-3">
               <b>Capacidad:</b>
-              <div>{{presentacion.Capacidad}}</div>
+              <div>{{presentacion.capacidad}}</div>
             </div>
           </div>
         </div>        

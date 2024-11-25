@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { EventosService } from '../swagger/ApiEventos/services/eventos.service';
+import { ContratoEventoListRespuestaGeneral } from '../swagger/ApiEventos/models/contrato-evento-list-respuesta-general';
+import { HttpContext } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +20,26 @@ export class DatosService {
     , { "Id": 9, "Nombre": "Evento 09", "Descripcion": "Descripcion evento 09", "Fecha": "2024-12-30T12:30:00", "Ubicacion": "Colombia", "Capacidad": 300, Imagen: "./Presentaciones/show.jpg" }
     , { "Id": 10,"Nombre": "Evento 10", "Descripcion": "Descripcion evento 10", "Fecha": "2024-12-30T12:30:00", "Ubicacion": "Colombia", "Capacidad": 300, Imagen: "./Presentaciones/15.jpg" }
   ];
-  constructor() { }
+  constructor(
+    private apiEventosService:EventosService
+  ) { }
 
-  obtenerEventos() {
-    return this.Datos;
+  async obtenerEventos() {
+    let datos: any = await new Promise<ContratoEventoListRespuestaGeneral>(
+      (resolve, reject) => {
+        this.apiEventosService.rootUrl = "https://localhost:7256";
+        this.apiEventosService.apiEventosObtenerEventosGet$Json().subscribe({
+          next: (success: ContratoEventoListRespuestaGeneral) => {
+            resolve(success);
+          },
+          error: (e) => {
+            reject(e.error);
+          },
+        });
+      }
+    );
+    console.log(datos);
+    return datos.resultado;
   }
 
   MisEventos() {
