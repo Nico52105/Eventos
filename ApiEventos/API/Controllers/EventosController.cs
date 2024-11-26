@@ -11,40 +11,57 @@ namespace API.Controllers
     [ApiController]
     public class EventosController : ControllerBase
     {
+        IRespuestas respuestas;
         IProcesosEventos procesosEventos;
-        public EventosController(IProcesosEventos procesosEventos)
+        public EventosController(IRespuestas respuestas,IProcesosEventos procesosEventos)
         {
+            this.respuestas = respuestas;
             this.procesosEventos = procesosEventos;
         }
 
         [HttpGet("[Action]")]
-        public ActionResult<RespuestaGeneral<List<ContratoEvento>>> ObtenerEventos()
+        [ProducesResponseType(typeof(RespuestaGeneral.Exitosa<List<ContratoEvento>>), 200)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 401)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 500)]
+        public ActionResult<RespuestaGeneral.Exitosa<object>> ObtenerEventos()
         {
-            return Ok(this.procesosEventos.ObtenerEventos());
+            return respuestas.Formato(this.procesosEventos.ObtenerEventos());
         }
 
         [HttpGet("[Action]")]
-        public IActionResult MisEventos(int idUsuario)
+        [ProducesResponseType(typeof(RespuestaGeneral.Exitosa<List<ContratoEvento>>), 200)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 401)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 500)]
+        public ActionResult<RespuestaGeneral.Exitosa<object>> MisEventos(int idUsuario)
         {
-            return Ok(this.procesosEventos.MisEventos(idUsuario));
+            return respuestas.Formato(this.procesosEventos.MisEventos(idUsuario));
         }
 
         [HttpPost("[Action]")]
-        public IActionResult CrearEvento(ContratoEvento contratoEvento)
+        [ProducesResponseType(typeof(RespuestaGeneral.Exitosa<bool>), 200)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 401)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 500)]
+        public ActionResult<RespuestaGeneral.Exitosa<object>> CrearEvento(ContratoEvento contratoEvento)
         {
-            return Ok(this.procesosEventos.CrearEvento(contratoEvento));
+            return respuestas.Formato(this.procesosEventos.CrearEvento(contratoEvento));
         }
 
         [HttpPost("[Action]")]
-        public IActionResult EditarEvento(ContratoEvento contratoEvento)
+        [ProducesResponseType(typeof(RespuestaGeneral.Exitosa<bool>), 200)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 401)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 500)]
+        public ActionResult<RespuestaGeneral.Exitosa<object>> EditarEvento(ContratoEvento contratoEvento)
         {
-            return Ok(this.procesosEventos.EditarEvento(contratoEvento));
+            return respuestas.Formato(this.procesosEventos.EditarEvento(contratoEvento));
         }
 
         [HttpPost("[Action]")]
-        public IActionResult EliminarEvento(int idEvento)
+        [ProducesResponseType(typeof(RespuestaGeneral.Exitosa<bool>), 200)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 401)]
+        [ProducesResponseType(typeof(RespuestaGeneral.Fallida), 500)]
+        public ActionResult<RespuestaGeneral.Exitosa<object>> EliminarEvento(int idEvento)
         {
-            return Ok(this.procesosEventos.EliminarEvento(idEvento));
+            return respuestas.Formato(this.procesosEventos.EliminarEvento(idEvento));
         }
     }
 }

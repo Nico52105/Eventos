@@ -21,9 +21,9 @@ namespace Negocio.Procesos.Clases
             this.agendaContext = agendaContext;
         }
 
-        public RespuestaGeneral<List<ContratoEvento>> ObtenerEventos()
+        public RespuestaGeneral.Exitosa<object> ObtenerEventos()
         {
-            RespuestaGeneral<List<ContratoEvento>> respuesta = new RespuestaGeneral<List<ContratoEvento>>();
+            RespuestaGeneral.Exitosa<object> respuesta = new RespuestaGeneral.Exitosa<object>();
             try
             {
                 List<ContratoEvento> eventos= agendaContext.Eventos.Select(e=>
@@ -51,9 +51,9 @@ namespace Negocio.Procesos.Clases
             return respuesta;
         }
 
-        public RespuestaGeneral<List<ContratoEvento>> MisEventos(int idUsuario)
+        public RespuestaGeneral.Exitosa<object> MisEventos(int idUsuario)
         {
-            RespuestaGeneral<List<ContratoEvento>> respuesta = new RespuestaGeneral<List<ContratoEvento>>();
+            RespuestaGeneral.Exitosa<object> respuesta = new RespuestaGeneral.Exitosa<object>();
             try
             {
                 List<ContratoEvento> eventos = agendaContext.Eventos.Where(e=>e.IdUsuario== idUsuario).Select(e =>
@@ -82,9 +82,9 @@ namespace Negocio.Procesos.Clases
             return respuesta;
         }
 
-        public RespuestaGeneral<List<ContratoEvento>> CrearEvento(ContratoEvento contratoEvento)
+        public RespuestaGeneral.Exitosa<object> CrearEvento(ContratoEvento contratoEvento)
         {
-            RespuestaGeneral<List<ContratoEvento>> respuesta = new RespuestaGeneral<List<ContratoEvento>>();
+            RespuestaGeneral.Exitosa<object> respuesta = new RespuestaGeneral.Exitosa<object>();
             try
             {
                 Evento evento = new Evento
@@ -102,21 +102,21 @@ namespace Negocio.Procesos.Clases
                 respuesta.StatusCode = StatusCodes.Status200OK;
                 respuesta.Mensaje = "Operacion exitosa al CrearEvento";
                 respuesta.Error = false;
-                respuesta.Resultado = null;
+                respuesta.Resultado = true;
             }
             catch (Exception ex)
             {
                 respuesta.StatusCode = StatusCodes.Status500InternalServerError;
                 respuesta.Mensaje = "Operacion fallida al CrearEvento";
                 respuesta.Error = true;
-                respuesta.Resultado = null;
+                respuesta.Resultado = false;
             }
             return respuesta;
         }
 
-        public RespuestaGeneral<List<ContratoEvento>> EditarEvento(ContratoEvento contratoEvento)
+        public RespuestaGeneral.Exitosa<object> EditarEvento(ContratoEvento contratoEvento)
         {
-            RespuestaGeneral<List<ContratoEvento>> respuesta = new RespuestaGeneral<List<ContratoEvento>>();
+            RespuestaGeneral.Exitosa<object> respuesta = new RespuestaGeneral.Exitosa<object>();
             try
             {                
                 Evento evento = agendaContext.Eventos.Where(e => e.Id == contratoEvento.Id).FirstOrDefault();
@@ -139,21 +139,21 @@ namespace Negocio.Procesos.Clases
                     respuesta.Mensaje = "Operacion fallida evento no encontrado";
                     respuesta.Error = true;
                 } 
-                respuesta.Resultado = null;
+                respuesta.Resultado = true;
             }
             catch (Exception ex)
             {
                 respuesta.StatusCode = StatusCodes.Status500InternalServerError;
                 respuesta.Mensaje = "Operacion fallida al EditarEvento";
                 respuesta.Error = true;
-                respuesta.Resultado = null;
+                respuesta.Resultado = false;
             }
             return respuesta;
         }
 
-        public RespuestaGeneral<List<ContratoEvento>> EliminarEvento(int idEvento)
+        public RespuestaGeneral.Exitosa<object> EliminarEvento(int idEvento)
         {
-            RespuestaGeneral<List<ContratoEvento>> respuesta = new RespuestaGeneral<List<ContratoEvento>>();
+            RespuestaGeneral.Exitosa<object> respuesta = new RespuestaGeneral.Exitosa<object>();
             try
             {
                 Evento evento = agendaContext.Eventos.Where(e => e.Id == idEvento).FirstOrDefault();
@@ -171,14 +171,14 @@ namespace Negocio.Procesos.Clases
                     respuesta.Mensaje = "Operacion fallida evento no encontrado";
                     respuesta.Error = true;
                 }
-                respuesta.Resultado = null;
+                respuesta.Resultado = true;
             }
             catch (Exception ex)
             {
                 respuesta.StatusCode = StatusCodes.Status500InternalServerError;
                 respuesta.Mensaje = "Operacion fallida al EliminarEvento";
                 respuesta.Error = true;
-                respuesta.Resultado = null;
+                respuesta.Resultado = false;
             }
             return respuesta;
         }

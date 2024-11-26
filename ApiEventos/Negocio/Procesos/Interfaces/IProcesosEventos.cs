@@ -9,14 +9,14 @@ namespace Negocio.Procesos.Interfaces
 {
     public interface IProcesosEventos
     {
-        RespuestaGeneral<List<ContratoEvento>> ObtenerEventos();
+        RespuestaGeneral.Exitosa<object> ObtenerEventos();
 
-        RespuestaGeneral<List<ContratoEvento>> MisEventos(int idUsuario);
+        RespuestaGeneral.Exitosa<object> MisEventos(int idUsuario);
 
-        RespuestaGeneral<List<ContratoEvento>> CrearEvento(ContratoEvento contratoEvento);
+        RespuestaGeneral.Exitosa<object> CrearEvento(ContratoEvento contratoEvento);
 
-        RespuestaGeneral<List<ContratoEvento>> EditarEvento(ContratoEvento contratoEvento);
-        
-        RespuestaGeneral<List<ContratoEvento>> EliminarEvento(int idEvento);
+        RespuestaGeneral.Exitosa<object> EditarEvento(ContratoEvento contratoEvento);
+
+        RespuestaGeneral.Exitosa<object> EliminarEvento(int idEvento);
     }
 }

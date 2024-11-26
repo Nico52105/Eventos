@@ -1,3 +1,4 @@
+using API;
 using Datos.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Negocio.Procesos.Clases;
@@ -13,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AgendaContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DBAgenda")));
+builder.Services.AddScoped<IRespuestas, Respuestas>();
 builder.Services.AddScoped<IProcesosEventos, ProcesosEventos>();
 
 // Add CORS policy
